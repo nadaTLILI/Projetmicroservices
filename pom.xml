@@ -18,6 +18,7 @@
         <module>ProductService</module>
         <module>EurekaServer</module>
         <module>Gateway</module>
+        <module>ServiceOrder</module>
     </modules>
 
     <properties>
