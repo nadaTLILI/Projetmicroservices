@@ -19,6 +19,7 @@
         <module>EurekaServer</module>
         <module>Gateway</module>
         <module>ServiceOrder</module>
+        <module>FactureService</module>
     </modules>
 
     <properties>
