@@ -20,6 +20,7 @@
         <module>Gateway</module>
         <module>ServiceOrder</module>
         <module>FactureService</module>
+        <module>FournisseurService</module>
     </modules>
 
     <properties>
