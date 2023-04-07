@@ -1,4 +1,4 @@
 FROM openjdk:11
 EXPOSE 8081
-ADD target/ProductMicroservice-0.0.1-SNAPSHOT.jar productmicroservice
-ENTRYPOINT [ "java","-jar", "productmicroservice"]
+ADD target/ProductService-1.0-SNAPSHOT.jar productmicroservice.jar
+ENTRYPOINT [ "java","-jar", "productmicroservice.jar"]

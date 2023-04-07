@@ -1,49 +1,37 @@
-version: '3'
+  version: '3'
 
-services:
-  db:
-    container_name: 'mysqldb'
-    image: 'mysql/mysql-server:5.7'
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=productwebservice
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=
-      - MYSQL_ROOT_HOST=%
-    healthcheck:
-      test: ["CMD","mysqladmin","ping","-h","localhost"]
-      timeout: 20s
-      retries: 10
-    restart: always
-    networks:
-      - common-net
-  backendserver:
-    container_name: 'backendserver'
-    image: 'nadatlili/productmicroservice:latest'
-    ports:
-      - "8081:8081"
-    links:
-      - "db"
-    depends_on:
-      - db
-      - discovery-server
-      - api-gateway
-    restart: always
-    networks:
-      - common-net
-  ## Eureka Server
-  discovery-server:
-      image: microservices-tutorial/discovery-server:latest
+  services:
+    db:
+      container_name: 'mysqldb'
+      image: mysql:5.7
+      ports:
+        - "3306:3306"
+      environment:
+        - MYSQL_ROOT_PASSWORD=1234
+        - MYSQL_DATABASE=productwebservice
+        - MYSQL_USER=
+        - MYSQL_PASSWORD=
+        - MYSQL_ROOT_HOST=%
+      healthcheck:
+        test: ["CMD","mysqladmin","ping","-h","localhost"]
+        timeout: 20s
+        retries: 10
+      restart: always
+      networks:
+        - common-net
+
+    ## Eureka Server
+    discovery-server:
+      build: ./EurekaServer
       container_name: discovery-server
       ports:
         - "8761:8761"
       environment:
         - SPRING_PROFILES_ACTIVE=docker
 
-  api-gateway:
-      image: microservices-tutorial/api-gateway:latest
+    ## Gate Way Server
+    api-gateway:
+      build: ./Gateway
       container_name: api-gateway
       ports:
         - "8181:8080"
@@ -54,15 +42,20 @@ services:
         - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
       depends_on:
         - discovery-server
-  frontend:
-    image: 'nadatlili/angular:latest'
-    links:
-      - "backendserver"
-    depends_on:
-      - "backendserver"
-    ports:
-      - "80:80"
-    networks:
-      - common-net
-networks:
-  common-net: {}
+
+    backendserver:
+      container_name: 'backendserver'
+      build: ./ProductService
+      ports:
+        - "8081:8081"
+      links:
+        - "db"
+      depends_on:
+        - db
+        - discovery-server
+        - api-gateway
+      restart: always
+      networks:
+        - common-net
+  networks:
+    common-net: {}

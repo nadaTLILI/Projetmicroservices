@@ -1,5 +1,5 @@
 FROM openjdk:11
 
-COPY target/eurekaServer-1.0.0.jar eurekaserver.jar
+COPY target/EurekaServer-1.0-SNAPSHOT.jar eurekaserver.jar
 
 ENTRYPOINT ["java","-jar","eurekaserver.jar"]

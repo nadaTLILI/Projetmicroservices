@@ -1,5 +1,5 @@
 FROM openjdk:11
 
-COPY target/gateway-0.0.1-SNAPSHOT.jar gatewayservice
+COPY target/Gateway-0.0.1-SNAPSHOT.jar gatewayservice.jar
 
-ENTRYPOINT ["java","-jar","gatewayservice"]
+ENTRYPOINT ["java","-jar","gatewayservice.jar"]
