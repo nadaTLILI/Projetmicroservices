@@ -16,8 +16,8 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public void deleteProduct(Product product) {
-        productRepository.delete(product);
+    public void deleteProduct(Long produitId) {
+        productRepository.deleteById(produitId);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Product getProductById(String id) {
+    public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
 }

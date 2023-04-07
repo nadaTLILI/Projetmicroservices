@@ -9,7 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/product")
+@CrossOrigin("*")
 public class ProductController {
+
     @Autowired
     ProductService productService;
     @PostMapping("/")
@@ -18,7 +20,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getProductByID(@PathVariable ("id") String id) {
+    public Product getProductByID(@PathVariable ("id") Long id) {
         return productService.getProductById(id);
     }
 
@@ -26,5 +28,12 @@ public class ProductController {
     public List<Product> getProducts() {
         return productService.getProducts();
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    public void removeProduit(@PathVariable("produit-id") Long produitId) {
+        productService.deleteProduct(produitId);
+    }
+
 
 }
