@@ -8,7 +8,7 @@ import com.esprit.examen.entities.SecteurActivite;
 import com.esprit.examen.services.ISecteurActiviteService;
 
 @RestController
-@RequestMapping("/secteurActivite")
+@RequestMapping("api/secteurActivite")
 @CrossOrigin("*")
 public class SecteurActiviteController {
 

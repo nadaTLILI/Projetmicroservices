@@ -16,7 +16,7 @@ import com.esprit.examen.services.IFournisseurService;
 
 
 @RestController
-@RequestMapping("/fournisseur")
+@RequestMapping("api/fournisseur")
 public class FournisseurRestController {
 
 	@Autowired

@@ -10,21 +10,21 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reglement")
+@RequestMapping("api/reglement")
 @CrossOrigin("*")
 public class ReglementRestController {
 
     @Autowired
     IReglementService reglementService;
 
-    @PostMapping("/add-reglement")
+    @PostMapping("/")
     @ResponseBody
     public Reglement addReglement(@RequestBody Reglement r) {
         Reglement reglement = reglementService.addReglement(r);
         return reglement;
     }
 
-    @GetMapping("/retrieve-all-reglements")
+    @GetMapping("/")
     @ResponseBody
     public List<Reglement> getReglement() {
         List<Reglement> list = reglementService.retrieveAllReglements();

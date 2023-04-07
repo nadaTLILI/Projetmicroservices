@@ -11,26 +11,26 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/factures")
-@CrossOrigin("*")
+@RequestMapping("api/facture")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FactureRestController {
 
     @Autowired
     IFactureService factureService;
 
-    @GetMapping("/retrieve-all-factures")
+    @GetMapping("/")
     @ResponseBody
     public List<Facture> getFactures() {
         return factureService.retrieveAllFactures();
     }
 
-    @GetMapping("/retrieve-facture/{facture-id}")
+    @GetMapping("/{facture-id}")
     @ResponseBody
     public Facture retrieveFacture(@PathVariable("facture-id") Long factureId) {
         return factureService.retrieveFacture(factureId);
     }
 
-    @PostMapping("/add-facture")
+    @PostMapping("/")
     @ResponseBody
     public Facture addFacture(@RequestBody Facture f) {
         return factureService.addFacture(f);
