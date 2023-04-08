@@ -21,6 +21,7 @@
         <module>ServiceOrder</module>
         <module>FactureService</module>
         <module>FournisseurService</module>
+        <module>operateurService</module>
     </modules>
 
     <properties>
