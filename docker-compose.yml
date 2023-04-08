@@ -167,9 +167,7 @@
         - MONGO_INITDB_ROOT_USERNAME=
         - MONGO_INITDB_ROOT_PASSWORD=
       ports:
-        - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
-      volumes:
-        - db:/data/db
+        - 27017:27017
       networks:
         - common-net
       
@@ -203,5 +201,3 @@
   networks:
     common-net: {}
     
-  volumes:
-    db:
