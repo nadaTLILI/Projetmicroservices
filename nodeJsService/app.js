@@ -6,8 +6,17 @@ const eurekaHelper = require('./eureka.helper');
 
 const mongoose = require("mongoose");
 const app = express();
- 
-mongoose.connect('mongodb://localhost:27017/NodejsMS', { useNewUrlParser: true, useUnifiedTopology: true })
+
+const {
+  DB_USER,
+  DB_PASSWORD,
+  DB_HOST,
+  DB_PORT,
+  DB_NAME,
+  NODE_DOCKER_PORT
+} = process.env;
+
+mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to the database');
   })
@@ -18,7 +27,7 @@ mongoose.connect('mongodb://localhost:27017/NodejsMS', { useNewUrlParser: true, 
 app.use(express.json());
  
 app.listen(3001, () => {
-  console.log("Server is running on port 3001");
+  console.log(`Server is running on port 3001`);
 });
 // eurekaHelper.start((error)=>{if(error){console.log(error);}
 // console.log('Eureka client started')})
